@@ -46,7 +46,7 @@
 
     $.ajax({
         dataType: "json",
-        url: 'https://api.github.com/orgs/' + orgName + '/repos',
+        url: 'https://api.github.com/orgs/' + orgName + '/repos?per_page=100',
         headers: {
             // "Authorization": "Basic " + btoa(username + ":" + password)
         },
