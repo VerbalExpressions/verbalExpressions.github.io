@@ -13,6 +13,13 @@ module.exports = function Gruntfile(grunt) {
         'assets/app.js',
       ],
     },
+    uglify: {
+      assets: {
+        files: {
+          'assets/app.min.js': 'assets/app.js',
+        },
+      },
+    },
     watch: {
       Gruntfile: {
         files: [
@@ -28,6 +35,7 @@ module.exports = function Gruntfile(grunt) {
         ],
         tasks: [
           'eslint:assets',
+          'uglify:assets',
         ],
       },
     },
@@ -35,5 +43,6 @@ module.exports = function Gruntfile(grunt) {
   grunt.registerTask('default', [
     'eslint:Gruntfile',
     'eslint:assets',
+    'uglify:assets',
   ]);
 };
