@@ -13,6 +13,20 @@ module.exports = function Gruntfile(grunt) {
         'assets/app.js',
       ],
     },
+    postcss: {
+      options: {
+        processors: [
+          module.require('cssnano')({
+            mergeRules: false,
+          }),
+        ],
+      },
+      assets: {
+        files: {
+          'assets/style.min.css': 'assets/style.css',
+        },
+      },
+    },
     uglify: {
       assets: {
         files: {
@@ -38,11 +52,20 @@ module.exports = function Gruntfile(grunt) {
           'uglify:assets',
         ],
       },
+      assets_postcss: {
+        files: [
+          'assets/style.css',
+        ],
+        tasks: [
+          'postcss:assets',
+        ],
+      },
     },
   });
   grunt.registerTask('default', [
     'eslint:Gruntfile',
     'eslint:assets',
     'uglify:assets',
+    'postcss:assets',
   ]);
 };
