@@ -34,6 +34,18 @@ module.exports = function Gruntfile(grunt) {
         },
       },
     },
+    vulcanize: {
+      options: {
+        inlineScripts: true,
+        inlineCss: true,
+        stripComments: true,
+      },
+      index: {
+        files: {
+          'index.html': 'assets/index.html',
+        },
+      },
+    },
     watch: {
       Gruntfile: {
         files: [
@@ -60,6 +72,16 @@ module.exports = function Gruntfile(grunt) {
           'postcss:assets',
         ],
       },
+      vulcanize_index: {
+        files: [
+          'assets/index.html',
+          'assets/app.min.js',
+          'assets/style.min.css',
+        ],
+        tasks: [
+          'vulcanize:index',
+        ],
+      },
     },
   });
   grunt.registerTask('default', [
@@ -67,5 +89,6 @@ module.exports = function Gruntfile(grunt) {
     'eslint:assets',
     'uglify:assets',
     'postcss:assets',
+    'vulcanize:index',
   ]);
 };
