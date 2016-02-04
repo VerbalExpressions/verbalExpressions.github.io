@@ -147,6 +147,11 @@ a.box:active {
 .site-header .box {
     min-height: 452px;
 }
+.site-header a {
+  min-height: 48px ;
+  min-width: 48px ;
+  line-height: 48px ;
+}
 
 .stats {
     margin: 0 0 2em;
