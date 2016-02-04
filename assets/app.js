@@ -75,23 +75,6 @@
         return 'A while ago';
       }
 
-      // Display a repo's overview (for recent updates section)
-      function showRepoOverview(repo) {
-        var item = (
-          '<li>' +
-            '<span class="name"><a href="' + repo.html_url + '">' +
-              repo.name +
-            '</a></span>' +
-            ' &middot; ' +
-            '<span class="time"><a href="' + repo.html_url + '/commits">' +
-              prettyDate(repo.pushed_at) +
-            '</a></span>' +
-          '</li>'
-        );
-
-        $(item).appendTo('#updated-repos');
-      }
-
       // Create an entry for the repo in the grid of org repos
       function showRepo(repo) {
         var $item = $('<div class="unit-1-3 repo" />');
@@ -103,6 +86,9 @@
             repo.watchers +
             ' stargazers &middot; ' +
             repo.language +
+            '<br>' +
+            'Updated ' +
+            prettyDate(repo.pushed_at) +
           '</p>'
         );
         $link.append('<p class="repo__desc">' + getRepoDesc(repo) + '</p>');
@@ -137,17 +123,6 @@
               repo.hotness += weightForWatchers * repo.watchers / createdDelta;
             });
 
-            // Sort by hotness.
-            repos.sort(function sortRepos(a, b) {
-              if (a.hotness < b.hotness) return 1;
-              if (b.hotness < a.hotness) return -1;
-              return 0;
-            });
-
-            $.each(repos, function feSortedRepo(i, repo) {
-              showRepo(repo);
-            });
-
             // Sort by most-recently pushed to.
             repos.sort(function sortReposAgain(a, b) {
               if (a.pushed_at < b.pushed_at) return 1;
@@ -155,8 +130,8 @@
               return 0;
             });
 
-            $.each(repos.slice(0, 3), function feSlicedRepos(i, repo) {
-              showRepoOverview(repo);
+            $.each(repos, function feSortedRepo(i, repo) {
+              showRepo(repo);
             });
           });
         },

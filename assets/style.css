@@ -144,9 +144,6 @@ a.box:active {
     text-align: center;
 }
 
-.site-header .box {
-    min-height: 452px;
-}
 .site-header a {
   min-height: 48px ;
   min-width: 48px ;
@@ -154,7 +151,6 @@ a.box:active {
 }
 
 .stats {
-    margin: 0 0 2em;
     font-size: 1.125em;
 }
 
