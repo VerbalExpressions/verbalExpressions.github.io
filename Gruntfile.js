@@ -13,6 +13,18 @@ module.exports = function Gruntfile(grunt) {
         'assets/app.js',
       ],
     },
+    htmlSnapshot: {
+      index: {
+        options: {
+          bodyAttr: 'data-prerendered',
+          fileNamePrefix: '',
+          msWaitForPages: 5000,
+          urls: [
+            'assets/index.vulcanized.html',
+          ],
+        },
+      },
+    },
     postcss: {
       options: {
         processors: [
@@ -24,6 +36,13 @@ module.exports = function Gruntfile(grunt) {
       assets: {
         files: {
           'assets/style.min.css': 'assets/style.css',
+        },
+      },
+    },
+    rename: {
+      index: {
+        files: {
+          'index.html': 'assets_index.vulcanized.html.html',
         },
       },
     },
@@ -42,7 +61,7 @@ module.exports = function Gruntfile(grunt) {
       },
       index: {
         files: {
-          'index.html': 'assets/index.html',
+          'assets/index.vulcanized.html': 'assets/index.html',
         },
       },
     },
@@ -80,6 +99,8 @@ module.exports = function Gruntfile(grunt) {
         ],
         tasks: [
           'vulcanize:index',
+          'htmlSnapshot:index',
+          'rename:index',
         ],
       },
     },
@@ -90,5 +111,7 @@ module.exports = function Gruntfile(grunt) {
     'uglify:assets',
     'postcss:assets',
     'vulcanize:index',
+    'htmlSnapshot:index',
+    'rename:index',
   ]);
 };

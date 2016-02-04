@@ -168,10 +168,13 @@ a.box:active {
 
 .repo__info {
     display: block;
-    margin: 0 0 1.25em;
+    margin: 0 0 2.6em ;
     font-size: 12px;
     font-weight: bold;
     color: #999;
+}
+body[data-prerendered] .repo__info {
+    margin: 0 0 1.25em;
 }
 
 .repo__desc {
