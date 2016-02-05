@@ -124,16 +124,7 @@
             // Convert pushed_at to Date.
             $.each(repos, function feRepo(i, REPO) {
               var repo = REPO;
-              var weekHalfLife = 1.146 * Math.pow(10, -9);
-              var pushDelta;
-              var createdDelta = (new Date()) - Date.parse(repo.created_at);
-              var weightForPush = 1;
-              var weightForWatchers = 1.314 * Math.pow(10, 7);
-
               repo.pushed_at = new Date(repo.pushed_at);
-              pushDelta = (new Date()) - Date.parse(repo.pushed_at);
-              repo.hotness = weightForPush * Math.pow(Math.E, -1 * weekHalfLife * pushDelta);
-              repo.hotness += weightForWatchers * repo.watchers / createdDelta;
             });
 
             // Sort by most-recently pushed to.
