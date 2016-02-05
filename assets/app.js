@@ -60,7 +60,7 @@
           [3600, 'minutes', 60],
           [7200, '1 hour ago'],
           [86400, 'hours', 3600],
-          [172800, 'Yesterday'],
+          [172800, 'yesterday'],
           [604800, 'days', 86400],
           [1209600, '1 week ago'],
           [2678400, 'weeks', 604800],
@@ -72,7 +72,7 @@
             return f[2] ? Math.floor(seconds / f[2]) + ' ' + f[1] + ' ago' : f[1];
           }
         }
-        return 'A while ago';
+        return 'a while ago';
       }
 
       // Create an entry for the repo in the grid of org repos
