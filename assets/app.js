@@ -78,33 +78,37 @@
       // Create an entry for the repo in the grid of org repos
       function showRepo(repo) {
         var $item = $('.unit-1-3.repo[data-repo-name="' + repo.name + '"]');
-        var $link = $('<a class="box" href="' + getRepoUrl(repo) + '" />');
         var alreadyThere = $item.length >= 1;
         if (!alreadyThere) {
-          $item = $('<div class="unit-1-3 repo" />');
+          $item = $(
+            '<div class="unit-1-3 repo">' +
+              '<a class="box" href="">' +
+                '<h2 class="repo__name"></h2>' +
+                '<p class="repo__info">' +
+                  '<span class="repo__watchers"></span>' +
+                  ' stargazers &middot; ' +
+                  '<span class="repo__language"></span>' +
+                  '<span class="repo__updated">&nbsp;</span>' +
+                '</p>' +
+                '<p class="repo__desc"></p>' +
+              '</a>' +
+            '</div>'
+          );
           $item.attr('data-repo-name', repo.name);
-        } else {
-          $item.text('');
         }
 
-        $link.append('<h2 class="repo__name">' + repo.name + '</h2>');
-        $link.append(
-          '<p class="repo__info">' +
-            repo.watchers +
-            ' stargazers &middot; ' +
-            repo.language +
-          '</p>'
-        );
+        $item.children('a').attr('href', getRepoUrl(repo));
+        $item.find('.repo__name').text(repo.name);
+        $item.find('.repo__watchers').text(repo.watchers);
+        $item.find('.repo__language').text(repo.language);
+        $item.find('.repo__desc').text(getRepoDesc(repo));
         if ($('body').attr('data-prerendered') === 'data-prerendered') {
-          $link.find('.repo__info').append(
-            '<br>' +
+          $item.find('.repo__updated').text(
             'Updated ' +
             prettyDate(repo.pushed_at)
           );
         }
-        $link.append('<p class="repo__desc">' + getRepoDesc(repo) + '</p>');
 
-        $link.appendTo($item);
         if (!alreadyThere) {
           $item.appendTo('#repos');
         }
