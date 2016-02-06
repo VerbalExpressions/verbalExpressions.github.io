@@ -10,7 +10,7 @@ module.exports = function Gruntfile(grunt) {
         'Gruntfile.js',
       ],
       assets: [
-        'assets/app.js',
+        'src/app.js',
       ],
     },
     htmlSnapshot: {
@@ -35,7 +35,7 @@ module.exports = function Gruntfile(grunt) {
       },
       assets: {
         files: {
-          'assets/style.min.css': 'assets/style.css',
+          'assets/style.min.css': 'src/style.css',
         },
       },
     },
@@ -49,7 +49,7 @@ module.exports = function Gruntfile(grunt) {
     uglify: {
       assets: {
         files: {
-          'assets/app.min.js': 'assets/app.js',
+          'assets/app.min.js': 'src/app.js',
         },
       },
     },
@@ -61,7 +61,7 @@ module.exports = function Gruntfile(grunt) {
       },
       index: {
         files: {
-          'assets/index.vulcanized.html': 'assets/index.html',
+          'assets/index.vulcanized.html': 'src/index.html',
         },
       },
     },
@@ -76,7 +76,7 @@ module.exports = function Gruntfile(grunt) {
       },
       assets_app: {
         files: [
-          'assets/app.js',
+          'src/app.js',
         ],
         tasks: [
           'eslint:assets',
@@ -85,7 +85,7 @@ module.exports = function Gruntfile(grunt) {
       },
       assets_postcss: {
         files: [
-          'assets/style.css',
+          'src/style.css',
         ],
         tasks: [
           'postcss:assets',
@@ -93,7 +93,7 @@ module.exports = function Gruntfile(grunt) {
       },
       vulcanize_index: {
         files: [
-          'assets/index.html',
+          'src/index.html',
           'assets/app.min.js',
           'assets/style.min.css',
         ],

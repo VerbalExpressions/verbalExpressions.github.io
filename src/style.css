@@ -1,5 +1,5 @@
 /*
- * H5BP project listing repo
+ * Github organization project listing repo
  */
 
 html {
@@ -163,7 +163,7 @@ a.box:active {
 
 .repo__name {
     margin: 0 0 0.1em;
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 .repo__info {

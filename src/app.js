@@ -25,10 +25,10 @@
       'use strict';
       var $ = window.jQuery;
       var orgName = 'VerbalExpressions';
+      var $body = $('body');
 
       // Put custom repo URL's in this object, keyed by repo name.
       var repoUrls = {
-        // 'html5-boilerplate': 'http://html5boilerplate.com/'
         'verbalexpressions.github.io': 'http://verbalexpressions.github.io/',
       };
 
@@ -102,7 +102,9 @@
         $item.find('.repo__watchers').text(repo.watchers);
         $item.find('.repo__language').text(repo.language);
         $item.find('.repo__desc').text(getRepoDesc(repo));
-        if ($('body').attr('data-prerendered') === 'data-prerendered') {
+
+        // don't display this when we build the html snapshot
+        if ($body.attr('data-prerendered') === 'data-prerendered') {
           $item.find('.repo__updated').text(
             'Updated ' +
             prettyDate(repo.pushed_at)
@@ -117,9 +119,6 @@
       $.ajax({
         dataType: 'json',
         url: 'https://api.github.com/orgs/' + orgName + '/repos?per_page=100',
-        headers: {
-          // "Authorization": "Basic " + btoa(username + ":" + password)
-        },
         success: function success(result) {
           var repos = result;
           $(function why() {
@@ -148,13 +147,9 @@
       $.ajax({
         dataType: 'json',
         url: 'https://api.github.com/orgs/' + orgName + '/members',
-        headers: {
-          // "Authorization": "Basic " + btoa(username + ":" + password)
-        },
         success: function success(result) {
-          var members = result;
           $(function why() {
-            $('#num-members').text(members.length);
+            $('#num-members').text(result.length);
           });
         },
       });
