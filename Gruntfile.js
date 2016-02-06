@@ -105,7 +105,7 @@ module.exports = function Gruntfile(grunt) {
       },
     },
   });
-  grunt.registerTask('default', [
+  grunt.registerTask('build', [
     'eslint:Gruntfile',
     'eslint:assets',
     'uglify:assets',
@@ -114,4 +114,6 @@ module.exports = function Gruntfile(grunt) {
     'htmlSnapshot:index',
     'rename:index',
   ]);
+
+  grunt.registerTask('default', ['build', 'watch']);
 };
