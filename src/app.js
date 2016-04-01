@@ -17,7 +17,7 @@
   };
 
   // Twitter SDK
-  add('http://platform.twitter.com/widgets.js', 'twitter-wjs');
+  add('https://platform.twitter.com/widgets.js', 'twitter-wjs');
   add(
     'https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
     false,
@@ -29,7 +29,7 @@
 
       // Put custom repo URL's in this object, keyed by repo name.
       var repoUrls = {
-        'verbalexpressions.github.io': 'http://verbalexpressions.github.io/',
+        'verbalexpressions.github.io': 'https://verbalexpressions.github.io/',
       };
 
       // Put custom repo descriptions in this object, keyed by repo name.
