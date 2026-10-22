@@ -42,7 +42,7 @@
 
       // Return the repo description
       function getRepoDesc(repo) {
-        return repoDescriptions[repo.name] || repo.description;
+        return repoDescriptions[repo.name] || repo.description || '';
       }
 
       // Relative times
@@ -100,7 +100,7 @@
         $item.children('a').attr('href', getRepoUrl(repo));
         $item.find('.repo__name').text(repo.name);
         $item.find('.repo__watchers').text(repo.watchers);
-        $item.find('.repo__language').text(repo.language);
+        $item.find('.repo__language').text(repo.language || '');
         $item.find('.repo__desc').text(getRepoDesc(repo));
 
         // don't display this when we build the html snapshot
